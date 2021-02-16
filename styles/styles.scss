@@ -1,0 +1,48 @@
+@import './partials/reset';
+@import './partials/typography';
+@import './partials/header';
+@import './partials/home';
+@import './partials/blog';
+@import './partials/contact';
+@import './partials/responsive';
+
+* {
+    transition: 250ms all;
+}
+
+body, body > * {
+    overflow-x: hidden;
+}
+
+
+
+.wrapper {
+    max-width: 1500px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+.img-container img {
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        
+        a {
+            padding: 20px;
+            margin: 10px;
+            
+            &:hover {
+                color: $light-blue;
+            }
+        }
+    }
+}
