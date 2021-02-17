@@ -124,7 +124,7 @@
               </div>
               <div class="text">
                 <p class="posted">Wednesday October 10th, 2018 by Julia</p>
-                <p>
+                <p >
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                   Assumenda, veritatis atque? Fugit architecto autem sed non
                   tempore, in facere reiciendis.
@@ -141,6 +141,7 @@
               class="name"
               id="name"
               placeholder="Name"
+              required
             />
             <label for="email" class="sr-only"></label>
             <input
@@ -158,12 +159,76 @@
               cols="30"
               rows="10"
               placeholder="Comment"
+              required
             ></textarea>
             <button type="submit">Post Comment</button>
           </form>
         </section>
       </main>
     </div>
+
     <p class="juno">Copyright &#169; 2021 Juno</p>
+
+    <script>
+
+      const getDate = () => {
+        var dateMain = new Date();
+        var date = dateMain.getUTCDate();
+        var day = dateMain.getUTCDay();
+        var month = dateMain.getUTCMonth();
+        var year = dateMain.getUTCFullYear();
+        
+        const getDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const getMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        const dateString = `${getDay[day]} ${getMonth[month]} ${date}, ${year}`;
+        
+        
+        return dateString;
+      }
+
+      const formElement = document.querySelector('form');
+      let i = 2;
+  
+      formElement.addEventListener('submit', function(event) {
+  
+          event.preventDefault();
+          i++;
+          const nameElement = document.querySelector('input[type=text]');
+          const commentElement = document.querySelector('textarea');
+          
+          const name = nameElement.value;
+          const comment = commentElement.value;
+          const date = getDate();
+          
+          if (name && comment) {
+  
+          const commentPost = document.createElement('div');
+          commentPost.classList.add('comment');
+          console.log(date);
+          
+  
+          commentPost.innerHTML = `
+          <div class="img-container">
+            <img src="./assets/comment-${i}.jpg" alt="profile picture" />
+          </div>
+          <div class="text">
+            <p class="posted"> ${date} by ${name}</p>
+            <p>${comment}</p>
+          </div>
+          `;
+  
+          console.log(name);
+          console.log(comment);
+          
+          
+          document.querySelector('.comments').appendChild(commentPost);
+          
+          
+          nameElement.value = '';
+          commentElement.value = '';
+          }
+      });
+      </script>
   </body>
 </html>
